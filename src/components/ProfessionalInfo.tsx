@@ -9,7 +9,7 @@ type ProfessionalInfoProps = {
 export function ProfessionalInfo({ className = "" }: ProfessionalInfoProps) {
   return (
     <section className={className}>
-      <div className="rounded-[28px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-6 shadow-[0_18px_55px_rgba(6,42,56,0.06)] transition duration-300 hover:border-[var(--color-accent)] hover:shadow-soft">
+      <div className="rounded-[18px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-6 shadow-[0_18px_55px_rgba(6,42,56,0.06)] transition duration-300 hover:border-[var(--color-accent)] hover:shadow-soft">
         <div className="flex items-start gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)] text-[var(--color-primary-dark)]">
             <FileCheck2 className="h-5 w-5" />
@@ -38,7 +38,7 @@ export function ProfessionalInfo({ className = "" }: ProfessionalInfoProps) {
           ))}
         </div>
 
-        <div className="mt-5 flex gap-3 rounded-[20px] border border-[var(--color-border-soft)] bg-[var(--color-background)] p-4 text-sm leading-7 text-[var(--color-text-dark)]">
+        <div className="mt-5 flex gap-3 rounded-[16px] border border-[var(--color-border-soft)] bg-[var(--color-background)] p-4 text-sm leading-7 text-[var(--color-text-dark)]">
           <Scale className="mt-1 h-5 w-5 shrink-0 text-[var(--color-primary)]" />
           <p>{clinicConfig.ethicalNotice}</p>
         </div>

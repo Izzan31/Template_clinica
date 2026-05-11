@@ -12,7 +12,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
     <div className="grid gap-3">
       {items.map((item) => (
         <details
-          className="group rounded-[22px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-5 shadow-sm transition duration-300 hover:border-[var(--color-accent)] hover:shadow-soft"
+          className="group rounded-[18px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-5 shadow-sm transition duration-300 hover:border-[var(--color-accent)] hover:shadow-soft"
           key={item.question}
         >
           <summary className="flex cursor-pointer items-start justify-between gap-4 text-left text-base font-semibold text-[var(--color-text-dark)]">

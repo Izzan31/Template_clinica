@@ -7,10 +7,10 @@ import { clinicConfig } from "@/config/clinic.config";
 export function TrustSection() {
   return (
     <section className="relative overflow-hidden bg-[var(--color-background)] py-20 sm:py-24">
-      <div className="pointer-events-none absolute left-10 top-20 h-64 w-64 rounded-full bg-[var(--color-accent)]/35 blur-3xl" />
+      <div className="pointer-events-none absolute left-10 top-20 h-64 w-64 rounded-full bg-[rgba(174,231,245,0.35)] blur-3xl" />
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
         <div className="relative min-h-[500px]">
-          <div className="absolute left-8 top-8 h-[86%] w-[82%] rounded-[40px] bg-[var(--color-primary-dark)]/10" />
+          <div className="absolute left-8 top-8 h-[86%] w-[82%] rounded-[40px] bg-[rgba(6,42,56,0.10)]" />
           <div className="relative h-full min-h-[500px] overflow-hidden rounded-[40px] shadow-[0_32px_90px_rgba(6,42,56,0.16)]">
             <Image
               alt="Dentista durante atendimento em consultório odontológico"

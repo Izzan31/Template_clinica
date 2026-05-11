@@ -3,6 +3,8 @@ import type { CSSProperties, ReactNode } from "react";
 import { clinicConfig } from "@/config/clinic.config";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { MotionProvider } from "@/components/motion/MotionProvider";
+import { PageTransition } from "@/components/motion/PageTransition";
 import { StructuredData } from "@/components/StructuredData";
 import { WhatsAppFloatingButton } from "@/components/WhatsAppFloatingButton";
 import "./globals.css";
@@ -39,10 +41,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <body style={brandStyle}>
         <StructuredData />
-        <Header />
-        {children}
-        <Footer />
-        <WhatsAppFloatingButton />
+        <MotionProvider>
+          <Header />
+          <PageTransition>{children}</PageTransition>
+          <Footer />
+          <WhatsAppFloatingButton />
+        </MotionProvider>
       </body>
     </html>
   );

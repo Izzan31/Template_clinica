@@ -38,6 +38,18 @@ Acesse:
 http://localhost:3000
 ```
 
+No Windows, também há um atalho de um clique:
+
+```txt
+abrir-site.bat
+```
+
+Ele abre `http://localhost:3000` e inicia o servidor automaticamente. Mantenha a janela aberta enquanto estiver usando o site. Para liberar a porta 3000, execute:
+
+```txt
+parar-site.bat
+```
+
 Valide antes de publicar:
 
 ```bash

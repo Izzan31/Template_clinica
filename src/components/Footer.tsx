@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="bg-[var(--color-primary-dark)] py-14 text-white">
       <Container>
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7 shadow-[0_26px_80px_rgba(0,0,0,0.16)] backdrop-blur sm:p-9">
+        <div className="rounded-[18px] border border-white/10 bg-white/[0.04] p-7 shadow-[0_26px_80px_rgba(0,0,0,0.16)] backdrop-blur sm:p-9">
           <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
             <div>
               <p className="text-lg font-semibold">{clinicConfig.name}</p>

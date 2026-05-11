@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { AtSign, Mail, Phone } from "lucide-react";
-import { clinicConfig } from "@/config/clinic.config";
+import { ExternalLink, Mail } from "lucide-react";
+import { Badge } from "@/components/Badge";
+import { buttonStyles } from "@/components/Button";
+import { ContactActionPanel } from "@/components/ContactActionPanel";
 import { Container } from "@/components/Container";
 import { CTAWhatsApp } from "@/components/CTAWhatsApp";
-import { LocationBlock } from "@/components/LocationBlock";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
+import { clinicConfig } from "@/config/clinic.config";
 
 export const metadata: Metadata = {
   title: `Contato | ${clinicConfig.name}`,
@@ -17,7 +21,7 @@ export default function ContactPage() {
   return (
     <PageShell>
       <PageHero
-        description="Veja endereço, horários, canais de contato e referências para chegar à clínica."
+        description="Endereço, horários e canais diretos da clínica."
         eyebrow="Contato"
         image={clinicConfig.images.clinic}
         title="Fale com a clínica e confirme sua consulta"
@@ -25,54 +29,66 @@ export default function ContactPage() {
         <CTAWhatsApp size="lg">Chamar no WhatsApp</CTAWhatsApp>
       </PageHero>
 
-      <section className="bg-[var(--color-background)] py-16 sm:py-20">
-        <Container className="grid gap-6 md:grid-cols-3">
-          <article className="rounded-[28px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-7 shadow-[0_20px_70px_rgba(6,42,56,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-soft">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent)] text-[var(--color-primary-dark)]">
-              <Phone className="h-6 w-6" />
-            </span>
-            <h2 className="mt-5 text-xl font-semibold text-[var(--color-text-dark)]">
-              WhatsApp
-            </h2>
-            <p className="mt-2 text-sm leading-7 text-[var(--color-text-muted)]">
-              {clinicConfig.phoneDisplay}
-            </p>
-          </article>
-
-          <article className="rounded-[28px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-7 shadow-[0_20px_70px_rgba(6,42,56,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-soft">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent)] text-[var(--color-primary-dark)]">
-              <AtSign className="h-6 w-6" />
-            </span>
-            <h2 className="mt-5 text-xl font-semibold text-[var(--color-text-dark)]">
-              Instagram
-            </h2>
-            <a
-              className="mt-2 inline-block text-sm font-semibold text-[var(--color-text-muted)] transition hover:text-[var(--color-primary)]"
-              href={clinicConfig.instagram}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {clinicConfig.instagramHandle}
-            </a>
-          </article>
-
-          <article className="rounded-[28px] border border-[var(--color-border-soft)] bg-[var(--color-surface)] p-7 shadow-[0_20px_70px_rgba(6,42,56,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-soft">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent)] text-[var(--color-primary-dark)]">
-              <Mail className="h-6 w-6" />
-            </span>
-            <h2 className="mt-5 text-xl font-semibold text-[var(--color-text-dark)]">
-              E-mail
-            </h2>
-            <p className="mt-2 text-sm leading-7 text-[var(--color-text-muted)]">
-              {clinicConfig.email}
-            </p>
-          </article>
+      <section className="bg-[var(--color-background)] py-16 sm:py-24">
+        <Container>
+          <ContactActionPanel />
         </Container>
       </section>
 
-      <section className="bg-[var(--color-surface)] py-16 sm:py-20">
+      <section className="bg-[var(--color-surface)] py-16 sm:py-24">
+        <Container className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+          <Reveal>
+            <Badge>Como chegar</Badge>
+            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[var(--color-text-dark)]">
+              Referências para chegar com tranquilidade
+            </h2>
+          </Reveal>
+
+          <StaggerGroup className="grid gap-0 border-y border-[var(--color-border-soft)]">
+            {clinicConfig.locationReferences.map((reference, index) => (
+              <StaggerItem key={reference}>
+                <article className="grid gap-4 border-b border-[var(--color-border-soft)] py-6 last:border-b-0 sm:grid-cols-[72px_1fr]">
+                  <span className="text-3xl font-semibold tracking-tight text-[rgba(6,42,56,0.18)]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-lg font-semibold text-[var(--color-text-dark)]">
+                    {reference}
+                  </p>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
+      <section className="bg-[var(--color-background)] py-16 sm:py-20">
         <Container>
-          <LocationBlock />
+          <Reveal className="border border-[var(--color-border-soft)] bg-white p-7 sm:p-9">
+            <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <Badge>Contato institucional</Badge>
+                <h2 className="mt-4 text-3xl font-semibold text-[var(--color-text-dark)]">
+                  Outros canais da clínica
+                </h2>
+                <p className="mt-3 flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <Mail className="h-4 w-4 text-[var(--color-primary)]" />
+                  {clinicConfig.email}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <CTAWhatsApp size="lg">Chamar no WhatsApp</CTAWhatsApp>
+                <a
+                  className={buttonStyles({ tone: "secondaryDark", size: "lg" })}
+                  href={clinicConfig.instagram}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Instagram
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
     </PageShell>

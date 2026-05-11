@@ -1,12 +1,13 @@
 "use client";
 
+import { m } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { buttonStyles } from "@/components/Button";
-import { clinicConfig } from "@/config/clinic.config";
 import { Container } from "@/components/Container";
+import { clinicConfig } from "@/config/clinic.config";
 import { getWhatsAppLink } from "@/lib/whatsapp";
 
 export function Header() {
@@ -65,11 +66,20 @@ export function Header() {
           <nav className="hidden items-center gap-7 lg:flex">
             {clinicConfig.navigation.map((link) => (
               <Link
-                className={`text-sm font-medium transition duration-200 ${linkClass}`}
+                className={`relative py-2 text-sm font-medium transition duration-200 ${linkClass}`}
                 href={link.href}
                 key={link.href}
               >
                 {link.label}
+                {pathname === link.href ? (
+                  <m.span
+                    className={`absolute inset-x-0 -bottom-0.5 h-px ${
+                      isScrolled ? "bg-[var(--color-primary)]" : "bg-white"
+                    }`}
+                    layoutId="nav-active-line"
+                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                ) : null}
               </Link>
             ))}
           </nav>
@@ -103,18 +113,26 @@ export function Header() {
         </div>
 
         {isOpen ? (
-          <div className="mt-3 rounded-[24px] border border-white/80 bg-white/95 p-4 text-[var(--color-primary-dark)] shadow-[0_18px_55px_rgba(6,42,56,0.12)] backdrop-blur-xl lg:hidden">
+          <div className="mt-3 rounded-[18px] border border-white/80 bg-white/[0.95] p-4 text-[var(--color-primary-dark)] shadow-[0_18px_55px_rgba(6,42,56,0.12)] backdrop-blur-xl lg:hidden">
             <nav className="grid gap-2">
-              {clinicConfig.navigation.map((link) => (
-                <Link
-                  className="rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition duration-200 hover:bg-[var(--color-background)] hover:text-[var(--color-primary-dark)]"
-                  href={link.href}
-                  key={link.href}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {clinicConfig.navigation.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <Link
+                    className={`rounded-2xl px-4 py-3 text-sm font-medium transition duration-200 ${
+                      isActive
+                        ? "bg-[var(--color-background)] text-[var(--color-primary-dark)]"
+                        : "text-[var(--color-text-muted)] hover:bg-[var(--color-background)] hover:text-[var(--color-primary-dark)]"
+                    }`}
+                    href={link.href}
+                    key={link.href}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
             <a
               className={buttonStyles({
