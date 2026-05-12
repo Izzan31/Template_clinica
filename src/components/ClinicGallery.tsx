@@ -53,7 +53,7 @@ export function ClinicGallery() {
   }
 
   return (
-    <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden px-3 sm:px-4">
+    <div className="relative w-full max-w-full overflow-x-clip px-3 sm:px-4">
       <AnimatePresence mode="wait" initial={false}>
         <m.div
           animate={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}

@@ -99,8 +99,8 @@ export default function Home() {
               Estrutura da clínica
             </h2>
           </Reveal>
-          <ClinicGallery />
         </Container>
+        <ClinicGallery />
       </section>
 
       <section className="bg-[var(--color-primary-dark)] py-14 text-white sm:py-16">
